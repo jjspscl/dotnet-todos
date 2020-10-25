@@ -9,7 +9,13 @@ namespace Todos.Controller {
     [ApiController]
     public class TodosController : ControllerBase
     {
-        private readonly MockTodosRepo _repository = new MockTodosRepo();
+        private readonly ITodosRepo _repository;
+        // private readonly MockTodosRepo _repository = new MockTodosRepo();
+        
+        public TodosController(ITodosRepo repository)
+        {
+            _repository = repository;     
+        }
         
         [HttpGet]
         public ActionResult <IEnumerable<Todo>> GetAllTodos(){
